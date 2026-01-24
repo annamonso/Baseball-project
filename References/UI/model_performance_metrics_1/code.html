@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Desktop BIP Performance Metrics Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1f96ad",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#121e20",
+                        "accent-blue": "#2A9DF4",
+                        "accent-red": "#E64C65",
+                        "nav-gray": "#64748b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Space Grotesk', sans-serif;
+                @apply bg-background-light dark:bg-background-dark text-[#121617] dark:text-white;
+            }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .nav-active .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen">
+<nav class="sticky top-0 z-50 w-full bg-white dark:bg-[#0f171a] border-b border-[#dce3e5] dark:border-white/10 px-6 py-3 flex justify-between items-center shadow-sm">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-1.5 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-2xl">analytics</span>
+</div>
+<div>
+<h1 class="text-[#121617] dark:text-white font-bold text-xl leading-none">BIP ANALYTICS</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-primary font-bold mt-0.5">Statcast Live Feed</p>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 text-nav-gray hover:text-primary transition-colors font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">home</span> Home
+            </a>
+<a class="flex items-center gap-2 text-nav-gray hover:text-primary transition-colors font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">bar_chart</span> Contact
+            </a>
+<a class="flex items-center gap-2 text-primary nav-active font-bold text-sm" href="#">
+<span class="material-symbols-outlined">trending_up</span> BIP
+            </a>
+<a class="flex items-center gap-2 text-nav-gray hover:text-primary transition-colors font-semibold text-sm" href="#">
+<span class="material-symbols-outlined">description</span> Docs
+            </a>
+</div>
+</nav>
+<main class="w-full max-w-[1400px] mx-auto p-8 space-y-8">
+<div class="bg-white dark:bg-white/5 rounded-2xl p-6 border border-[#dce3e5] dark:border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-sm">
+<div class="flex items-center gap-4">
+<button class="size-10 flex items-center justify-center rounded-full bg-background-light dark:bg-white/10 hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-[#121617] dark:text-white">arrow_back</span>
+</button>
+<h2 class="text-2xl font-bold tracking-tight">Model Performance Metrics</h2>
+</div>
+<div class="flex h-12 w-full md:w-[400px] items-center rounded-xl bg-background-light dark:bg-white/5 p-1 border border-[#dce3e5] dark:border-white/10">
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-lg px-4 bg-transparent text-[#658086] dark:text-gray-400 text-sm font-bold leading-normal transition-all duration-200">
+<span class="truncate">Contact Model</span>
+<input class="hidden" name="model-toggle" type="radio" value="Contact"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-lg px-4 bg-primary text-white text-sm font-bold leading-normal transition-all shadow-md">
+<span class="truncate">BIP Model</span>
+<input checked="" class="hidden" name="model-toggle" type="radio" value="BIP"/>
+</label>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col gap-2 rounded-2xl p-6 bg-white dark:bg-white/5 border border-[#dce3e5] dark:border-white/10 shadow-sm">
+<div class="flex justify-between items-center">
+<p class="text-[#658086] dark:text-gray-400 text-xs font-bold uppercase tracking-widest">AUC Score</p>
+<span class="material-symbols-outlined text-primary opacity-50">analytics</span>
+</div>
+<p class="text-[#121617] dark:text-white tracking-tighter text-5xl font-bold">0.88</p>
+<div class="mt-2 text-xs text-green-600 font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +2.4% vs baseline
+                </div>
+</div>
+<div class="flex flex-col gap-2 rounded-2xl p-6 bg-white dark:bg-white/5 border border-[#dce3e5] dark:border-white/10 shadow-sm">
+<div class="flex justify-between items-center">
+<p class="text-[#658086] dark:text-gray-400 text-xs font-bold uppercase tracking-widest">Mean Error</p>
+<span class="material-symbols-outlined text-primary opacity-50">straighten</span>
+</div>
+<p class="text-[#121617] dark:text-white tracking-tighter text-5xl font-bold">12.4<span class="text-xl font-medium ml-1">ft</span></p>
+<div class="mt-2 text-xs text-green-600 font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_down</span> -0.8ft improvement
+                </div>
+</div>
+<div class="flex flex-col gap-2 rounded-2xl p-6 bg-white dark:bg-white/5 border border-[#dce3e5] dark:border-white/10 shadow-sm">
+<div class="flex justify-between items-center">
+<p class="text-[#658086] dark:text-gray-400 text-xs font-bold uppercase tracking-widest">Model Accuracy</p>
+<span class="material-symbols-outlined text-primary opacity-50">check_circle</span>
+</div>
+<p class="text-[#121617] dark:text-white tracking-tighter text-5xl font-bold">92<span class="text-xl font-medium ml-1">%</span></p>
+<div class="mt-2 text-xs text-green-600 font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">verified</span> Target achieved
+                </div>
+</div>
+</div>
+<div class="bg-white dark:bg-white/5 rounded-2xl border border-[#dce3e5] dark:border-white/10 p-8 shadow-sm">
+<div class="flex justify-between items-center mb-8 border-b border-[#dce3e5] dark:border-white/10 pb-4">
+<div>
+<h3 class="text-xl font-bold text-[#121617] dark:text-white uppercase tracking-tight">6x6 Confusion Matrix</h3>
+<p class="text-[#658086] dark:text-gray-400 text-sm font-medium">Model prediction accuracy across all batted ball classes</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="size-3 bg-primary rounded-sm"></div>
+<span class="text-xs font-bold text-[#658086]">Accurate Prediction</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="size-3 bg-primary/10 rounded-sm"></div>
+<span class="text-xs font-bold text-[#658086]">Prediction Error</span>
+</div>
+</div>
+</div>
+<div class="max-w-4xl mx-auto py-4">
+<div class="grid grid-cols-7 gap-3">
+<div class="aspect-square flex items-center justify-center"></div>
+<div class="text-sm font-bold text-primary flex justify-center uppercase">1B</div>
+<div class="text-sm font-bold text-primary flex justify-center uppercase">2B</div>
+<div class="text-sm font-bold text-primary flex justify-center uppercase">3B</div>
+<div class="text-sm font-bold text-primary flex justify-center uppercase">HR</div>
+<div class="text-sm font-bold text-primary flex justify-center uppercase">OUT</div>
+<div class="text-sm font-bold text-primary flex justify-center uppercase">ROE</div>
+<div class="text-sm font-bold text-primary flex items-center uppercase">1B</div>
+<div class="bg-primary text-white flex items-center justify-center text-lg font-bold aspect-square rounded-lg shadow-inner">760</div>
+<div class="bg-primary/10 text-[#121617] dark:text-white flex items-center justify-center text-sm font-semibold aspect-square rounded-lg">167</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">19</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">53</div>
+<div class="bg-primary/20 text-[#121617] dark:text-white flex items-center justify-center text-sm font-semibold aspect-square rounded-lg">419</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">67</div>
+<div class="text-sm font-bold text-primary flex items-center uppercase">2B</div>
+<div class="bg-primary/10 text-[#121617] dark:text-white flex items-center justify-center text-sm font-semibold aspect-square rounded-lg">102</div>
+<div class="bg-primary text-white flex items-center justify-center text-lg font-bold aspect-square rounded-lg shadow-inner">542</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">12</div>
+<div class="bg-primary/10 text-[#121617] dark:text-white flex items-center justify-center text-sm font-semibold aspect-square rounded-lg">84</div>
+<div class="bg-primary/20 text-[#121617] dark:text-white flex items-center justify-center text-sm font-semibold aspect-square rounded-lg">156</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">31</div>
+<div class="text-sm font-bold text-primary flex items-center uppercase">3B</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">14</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">8</div>
+<div class="bg-primary text-white flex items-center justify-center text-lg font-bold aspect-square rounded-lg shadow-inner">114</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">4</div>
+<div class="bg-primary/10 text-[#121617] dark:text-white flex items-center justify-center text-sm font-semibold aspect-square rounded-lg">42</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">3</div>
+<div class="text-sm font-bold text-primary flex items-center uppercase">HR</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">8</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">12</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">2</div>
+<div class="bg-primary text-white flex items-center justify-center text-lg font-bold aspect-square rounded-lg shadow-inner">621</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">15</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">1</div>
+<div class="text-sm font-bold text-primary flex items-center uppercase">OUT</div>
+<div class="bg-primary/20 text-[#121617] dark:text-white flex items-center justify-center text-sm font-semibold aspect-square rounded-lg">245</div>
+<div class="bg-primary/10 text-[#121617] dark:text-white flex items-center justify-center text-sm font-semibold aspect-square rounded-lg">112</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">8</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">22</div>
+<div class="bg-primary text-white flex items-center justify-center text-lg font-bold aspect-square rounded-lg shadow-inner">1892</div>
+<div class="bg-primary/10 text-[#121617] dark:text-white flex items-center justify-center text-sm font-semibold aspect-square rounded-lg">89</div>
+<div class="text-sm font-bold text-primary flex items-center uppercase">ROE</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">12</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">5</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">1</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">0</div>
+<div class="bg-primary/5 text-[#121617] dark:text-white flex items-center justify-center text-sm aspect-square rounded-lg">34</div>
+<div class="bg-primary text-white flex items-center justify-center text-lg font-bold aspect-square rounded-lg shadow-inner">82</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-white/5 rounded-2xl border border-[#dce3e5] dark:border-white/10 p-8 shadow-sm">
+<h3 class="text-xl font-bold text-[#121617] dark:text-white uppercase tracking-tight mb-6">Detailed Per-Class Performance</h3>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b-2 border-[#dce3e5] dark:border-white/10">
+<th class="py-4 text-xs font-black text-[#658086] dark:text-gray-400 uppercase tracking-widest">Target Class</th>
+<th class="py-4 text-xs font-black text-[#658086] dark:text-gray-400 uppercase tracking-widest text-right">Precision</th>
+<th class="py-4 text-xs font-black text-[#658086] dark:text-gray-400 uppercase tracking-widest text-right">Recall</th>
+<th class="py-4 text-xs font-black text-[#658086] dark:text-gray-400 uppercase tracking-widest text-right">F1-Score</th>
+<th class="py-4 text-xs font-black text-[#658086] dark:text-gray-400 uppercase tracking-widest text-right px-4">Support</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dce3e5] dark:divide-white/5">
+<tr class="hover:bg-background-light/50 dark:hover:bg-white/5 transition-colors">
+<td class="py-4 text-sm font-bold text-[#121617] dark:text-white">1B (Single)</td>
+<td class="py-4 text-sm font-medium text-right text-[#121617] dark:text-white">0.38</td>
+<td class="py-4 text-sm font-medium text-right text-[#121617] dark:text-white">0.51</td>
+<td class="py-4 text-sm font-bold text-right text-primary">0.43</td>
+<td class="py-4 text-sm font-medium text-right text-[#658086] px-4">1,437</td>
+</tr>
+<tr class="hover:bg-background-light/50 dark:hover:bg-white/5 transition-colors">
+<td class="py-4 text-sm font-bold text-[#121617] dark:text-white">2B (Double)</td>
+<td class="py-4 text-sm font-medium text-right text-[#121617] dark:text-white">0.42</td>
+<td class="py-4 text-sm font-medium text-right text-[#121617] dark:text-white">0.39</td>
+<td class="py-4 text-sm font-bold text-right text-primary">0.40</td>
+<td class="py-4 text-sm font-medium text-right text-[#658086] px-4">927</td>
+</tr>
+<tr class="hover:bg-background-light/50 dark:hover:bg-white/5 transition-colors">
+<td class="py-4 text-sm font-bold text-[#121617] dark:text-white">3B (Triple)</td>
+<td class="py-4 text-sm font-medium text-right text-[#121617] dark:text-white">0.55</td>
+<td class="py-4 text-sm font-medium text-right text-[#121617] dark:text-white">0.62</td>
+<td class="py-4 text-sm font-bold text-right text-primary">0.58</td>
+<td class="py-4 text-sm font-medium text-right text-[#658086] px-4">185</td>
+</tr>
+<tr class="hover:bg-background-light/50 dark:hover:bg-white/5 transition-colors">
+<td class="py-4 text-sm font-bold text-[#121617] dark:text-white">HR (Home Run)</td>
+<td class="py-4 text-sm font-medium text-right text-[#121617] dark:text-white">0.86</td>
+<td class="py-4 text-sm font-medium text-right text-[#121617] dark:text-white">0.94</td>
+<td class="py-4 text-sm font-bold text-right text-primary">0.90</td>
+<td class="py-4 text-sm font-medium text-right text-[#658086] px-4">659</td>
+</tr>
+<tr class="hover:bg-background-light/50 dark:hover:bg-white/5 transition-colors">
+<td class="py-4 text-sm font-bold text-[#121617] dark:text-white">OUT (Fielding)</td>
+<td class="py-4 text-sm font-medium text-right text-[#121617] dark:text-white">0.91</td>
+<td class="py-4 text-sm font-medium text-right text-[#121617] dark:text-white">0.82</td>
+<td class="py-4 text-sm font-bold text-right text-primary">0.86</td>
+<td class="py-4 text-sm font-medium text-right text-[#658086] px-4">2,368</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<footer class="w-full py-8 text-center text-[#658086] text-xs font-bold uppercase tracking-widest">
+        © 2024 Baseball Insights Platform • Professional Model Evaluation Suite
+    </footer>
+
+</body></html>

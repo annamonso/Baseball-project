@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Project Documentation Dashboard - Baseball ML</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2096a6",
+                        "background-light": "#f8fafc",
+                        "nav-inactive": "#94a3b8"
+                    },
+                    fontFamily: {
+                        "sans": ["Manrope", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body { 
+                @apply bg-background-light text-black antialiased;
+                font-family: 'Manrope', sans-serif;
+            }
+        }
+        .pipeline-step::after {
+            content: '';
+            @apply absolute top-1/2 -right-4 w-8 h-[2px] bg-primary/20 hidden lg:block;
+            transform: translateY(-50%);
+        }
+        .pipeline-step:last-child::after {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between">
+<h1 class="text-xl font-extrabold tracking-tight">Project Documentation</h1>
+<div class="flex items-center gap-4">
+<span class="text-xs font-semibold text-primary px-3 py-1 bg-primary/10 rounded-full">v2.4 Stable</span>
+</div>
+</header>
+<main class="flex-1 w-full max-w-screen-2xl mx-auto p-8 pb-32">
+<section class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 mb-8">
+<div class="mb-8">
+<h2 class="text-2xl font-extrabold mb-2">Pipeline Architecture</h2>
+<p class="text-gray-500">End-to-end data flow for Statcast-based model orchestration.</p>
+</div>
+<div class="flex flex-wrap lg:flex-nowrap items-center justify-between gap-8 lg:gap-4 relative">
+<div class="flex-1 min-w-[160px] relative pipeline-step flex flex-col items-center text-center">
+<div class="size-14 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-3xl">database</span>
+</div>
+<h3 class="font-bold text-sm">Raw Statcast Data</h3>
+<p class="text-xs text-gray-500 mt-1">MLB Gameday API</p>
+</div>
+<div class="flex-1 min-w-[160px] relative pipeline-step flex flex-col items-center text-center">
+<div class="size-14 rounded-full bg-primary text-white flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-3xl">settings_input_component</span>
+</div>
+<h3 class="font-bold text-sm">Feature Engineering</h3>
+<p class="text-xs text-gray-500 mt-1">Transformation Pipeline</p>
+</div>
+<div class="flex-1 min-w-[160px] relative pipeline-step flex flex-col items-center text-center">
+<div class="size-14 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-3xl">label_important</span>
+</div>
+<h3 class="font-bold text-sm">Label Generation</h3>
+<p class="text-xs text-gray-500 mt-1">Target Vector Encoding</p>
+</div>
+<div class="flex-1 min-w-[160px] relative pipeline-step flex flex-col items-center text-center">
+<div class="size-14 rounded-full bg-primary text-white flex items-center justify-center mb-4 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-3xl">model_training</span>
+</div>
+<h3 class="font-bold text-sm">Model Training</h3>
+<p class="text-xs text-gray-500 mt-1">XGBoost Tuning</p>
+</div>
+<div class="flex-1 min-w-[160px] relative pipeline-step flex flex-col items-center text-center">
+<div class="size-14 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-3xl">analytics</span>
+</div>
+<h3 class="font-bold text-sm">Evaluation</h3>
+<p class="text-xs text-gray-500 mt-1">ROC-AUC Metrics</p>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<section class="space-y-6">
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 h-full">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary p-2 bg-primary/10 rounded-lg">architecture</span>
+<h2 class="text-xl font-bold">Feature Engineering</h2>
+</div>
+<p class="text-gray-500 text-sm mb-6 leading-relaxed">Pitch-level, release point, and situational features extracted from raw telemetry.</p>
+<ul class="space-y-4">
+<li class="flex items-start gap-3 p-3 rounded-xl bg-background-light">
+<span class="material-symbols-outlined text-primary text-xl">speed</span>
+<div>
+<p class="text-sm font-bold">Velocity &amp; Spin</p>
+<p class="text-xs text-gray-500">Release speed and RPM rates</p>
+</div>
+</li>
+<li class="flex items-start gap-3 p-3 rounded-xl bg-background-light">
+<span class="material-symbols-outlined text-primary text-xl">location_on</span>
+<div>
+<p class="text-sm font-bold">Release Coordinates</p>
+<p class="text-xs text-gray-500">X/Z plane spatial positioning</p>
+</div>
+</li>
+<li class="flex items-start gap-3 p-3 rounded-xl bg-background-light">
+<span class="material-symbols-outlined text-primary text-xl">groups</span>
+<div>
+<p class="text-sm font-bold">Situational Metadata</p>
+<p class="text-xs text-gray-500">Count, outs, and baserunners</p>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<section class="space-y-6">
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 h-full">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary p-2 bg-primary/10 rounded-lg">sell</span>
+<h2 class="text-xl font-bold">Label Engineering</h2>
+</div>
+<div class="space-y-4">
+<div class="p-4 border border-gray-100 rounded-xl hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-bold text-sm">Contact Labels</h3>
+<span class="material-symbols-outlined text-primary text-sm">radio_button_checked</span>
+</div>
+<p class="text-xs text-gray-500">Binary classification distinguishing contact vs non-contact events.</p>
+</div>
+<div class="p-4 border border-gray-100 rounded-xl hover:border-primary/30 transition-colors">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-bold text-sm">BIP Labels</h3>
+<span class="material-symbols-outlined text-primary text-sm">grid_view</span>
+</div>
+<p class="text-xs text-gray-500 mb-4">Multiclass sectors for Ball-in-Play trajectory classification.</p>
+<div class="flex gap-2 flex-wrap">
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold rounded">1B</span>
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold rounded">2B</span>
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold rounded">3B</span>
+<span class="px-2 py-1 bg-primary text-white text-[10px] font-bold rounded">HR</span>
+<span class="px-2 py-1 bg-gray-200 text-gray-600 text-[10px] font-bold rounded">OUT</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-6">
+<div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 h-full">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary p-2 bg-primary/10 rounded-lg">pie_chart</span>
+<h2 class="text-xl font-bold">Data Partitions</h2>
+</div>
+<p class="text-gray-500 text-sm mb-8">Dataset division strategy to ensure model generalization and robust validation.</p>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-medium">Training Partition</span>
+<span class="text-sm font-bold text-primary">60%</span>
+</div>
+<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[60%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-medium">Validation Partition</span>
+<span class="text-sm font-bold text-primary">20%</span>
+</div>
+<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[20%] opacity-70"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-medium">Test Partition</span>
+<span class="text-sm font-bold text-primary">20%</span>
+</div>
+<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[20%] opacity-40"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<section class="mt-12 w-full">
+<button class="group w-full flex items-center justify-center gap-3 bg-primary text-white font-bold py-6 rounded-2xl shadow-xl shadow-primary/20 hover:bg-opacity-90 transition-all">
+<span class="material-symbols-outlined group-hover:translate-y-1 transition-transform">download</span>
+<span class="text-lg">Download Full Technical Report (PDF)</span>
+</button>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<div class="max-w-screen-2xl mx-auto px-8 py-3 flex justify-center items-center gap-16 lg:gap-32">
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-symbols-outlined text-[26px] text-nav-inactive group-hover:text-primary transition-colors">home</span>
+<span class="text-[11px] font-bold text-nav-inactive group-hover:text-primary transition-colors">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-symbols-outlined text-[26px] text-nav-inactive group-hover:text-primary transition-colors">bar_chart</span>
+<span class="text-[11px] font-bold text-nav-inactive group-hover:text-primary transition-colors">Contact</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-symbols-outlined text-[26px] text-nav-inactive group-hover:text-primary transition-colors">show_chart</span>
+<span class="text-[11px] font-bold text-nav-inactive group-hover:text-primary transition-colors">BIP</span>
+</div>
+<div class="flex flex-col items-center gap-1 group cursor-pointer">
+<span class="material-symbols-outlined text-[26px] text-primary" style="font-variation-settings: 'FILL' 1">description</span>
+<span class="text-[11px] font-bold text-primary">Docs</span>
+<div class="w-1.5 h-1.5 bg-primary rounded-full mt-0.5"></div>
+</div>
+</div>
+</nav>
+
+</body></html>

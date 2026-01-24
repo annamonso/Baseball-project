@@ -1,0 +1,240 @@
+<html lang="en"><head><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-background-light font-display text-black flex flex-col">```html
+
+
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Model Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0e7ea3",
+                        "background-light": "#f8fafc",
+                        "surface-light": "#ffffff",
+                        "success": "#26CC26",
+                        "nav-inactive": "#94a3b8"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .strike-zone-grid {
+            background-image:
+                linear-gradient(to right, rgba(14, 126, 163, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(14, 126, 163, 0.05) 1px, transparent 1px);
+            background-size: 5% 5%;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+    </style>
+
+
+<header class="w-full bg-white border-b border-slate-200 sticky top-0 z-50">
+<div class="border-b border-slate-100">
+<div class="max-w-[1440px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-black cursor-pointer text-2xl hover:bg-slate-50 p-1 rounded-full transition-colors">chevron_left</span>
+<h1 class="text-xl font-black tracking-tight uppercase">Contact Model</h1>
+</div>
+<div class="w-10"></div>
+</div>
+</div>
+<div class="border-b border-slate-100 bg-white">
+<div class="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-12 w-full">
+<div class="flex items-center gap-4">
+<span class="text-[11px] text-slate-400 font-black uppercase tracking-[0.2em]">Pitcher</span>
+<span class="text-2xl font-bold text-black">Gerrit Cole</span>
+</div>
+<div class="h-8 w-px bg-slate-200"></div>
+<div class="flex items-center gap-4">
+<span class="text-[11px] text-slate-400 font-black uppercase tracking-[0.2em]">Batter</span>
+<span class="text-2xl font-bold text-black">Aaron Judge</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white py-4 shadow-sm">
+<div class="max-w-[1440px] mx-auto px-6 flex flex-row items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex flex-col">
+<span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Balls / Strikes</span>
+<span class="text-xl font-bold">1 - 2</span>
+</div>
+<div class="h-8 w-px bg-slate-100"></div>
+<div class="flex flex-col">
+<span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Inning</span>
+<span class="text-xl font-bold">Top 4th</span>
+</div>
+<div class="h-8 w-px bg-slate-100"></div>
+<div class="flex flex-col">
+<span class="text-[9px] text-slate-500 uppercase font-black tracking-widest">Pitch Type</span>
+<span class="text-xl font-bold text-primary uppercase">4-Seam Fastball</span>
+</div>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-success/10 border border-success/20">
+<span class="material-symbols-outlined text-success active-icon text-lg">verified</span>
+<span class="text-[10px] font-black uppercase tracking-widest text-success">Correct Prediction</span>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="max-w-[1440px] mx-auto px-6 py-8 flex flex-col items-center">
+<div class="w-full max-w-4xl mb-12">
+<div class="flex justify-between items-end mb-4">
+<div class="flex flex-col">
+<h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Visualization</h3>
+<h2 class="text-lg font-bold">Catcher's Perspective</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<div class="size-2.5 bg-success rounded-full"></div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-600">Actual Hit</span>
+</div>
+</div>
+</div>
+<div class="relative aspect-[4/5] md:h-[600px] w-full rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-2xl shadow-slate-200/60 flex items-center justify-center mx-auto">
+<div class="absolute inset-0 strike-zone-grid opacity-40"></div>
+<div class="relative h-[75%] aspect-[0.7] border-[6px] border-slate-800 bg-slate-50/30 rounded-sm z-10 shadow-inner">
+<div class="absolute inset-0 grid grid-cols-3 grid-rows-3">
+<div class="border-[0.5px] border-slate-300"></div>
+<div class="border-[0.5px] border-slate-300"></div>
+<div class="border-[0.5px] border-slate-300"></div>
+<div class="border-[0.5px] border-slate-300"></div>
+<div class="border-[0.5px] border-slate-300"></div>
+<div class="border-[0.5px] border-slate-300"></div>
+<div class="border-[0.5px] border-slate-300"></div>
+<div class="border-[0.5px] border-slate-300"></div>
+<div class="border-[0.5px] border-slate-300"></div>
+</div>
+<div class="absolute top-[28%] left-[78%] -translate-x-1/2 -translate-y-1/2 z-30">
+<div class="size-16 rounded-full flex items-center justify-center bg-success text-white shadow-2xl shadow-success/40 border-[5px] border-white cursor-pointer transform hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl active-icon">check</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-6 left-6 flex flex-col gap-1 bg-white/95 backdrop-blur-md px-6 py-5 rounded-2xl border border-slate-200 shadow-xl z-20">
+<div class="text-[10px] text-slate-400 font-black uppercase tracking-[0.15em] mb-1">Pitch Coordinates</div>
+<div class="flex gap-6">
+<div class="flex flex-col">
+<span class="text-[9px] text-slate-500 font-bold uppercase">Plate X</span>
+<span class="text-2xl font-mono font-black text-black">0.84</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[9px] text-slate-500 font-bold uppercase">Plate Z</span>
+<span class="text-2xl font-mono font-black text-black">2.12</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl mb-12">
+<div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+<h3 class="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-8">Contact Prediction</h3>
+<div class="space-y-8">
+<div>
+<div class="flex justify-between items-end mb-4">
+<span class="text-lg font-bold text-black">Contact Probability</span>
+<span class="text-4xl font-black text-black">82.4%</span>
+</div>
+<div class="h-5 w-full bg-slate-100 rounded-full overflow-hidden p-1">
+<div class="h-full bg-primary rounded-full shadow-sm shadow-primary/30" style="width: 82.4%"></div>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-slate-50 px-6 py-5 rounded-2xl border border-slate-100">
+<span class="text-[11px] uppercase font-black text-slate-400 tracking-widest">Prediction Result</span>
+<span class="text-xl font-black text-success uppercase tracking-wider">HIT BY PLAYER</span>
+</div>
+</div>
+</div>
+<div class="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+<h3 class="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-8">Advanced Pitch Metrics</h3>
+<div class="grid grid-cols-3 gap-6 mb-8">
+<div>
+<p class="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1">Velocity</p>
+<p class="text-3xl font-black">98.2 <span class="text-[10px] font-normal text-slate-400">MPH</span></p>
+</div>
+<div>
+<p class="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1">Spin Rate</p>
+<p class="text-3xl font-black">2,450 <span class="text-[10px] font-normal text-slate-400">RPM</span></p>
+</div>
+<div>
+<p class="text-[10px] text-slate-400 font-black uppercase tracking-widest mb-1">Break</p>
+<p class="text-3xl font-black">12/18 <span class="text-[10px] font-normal text-slate-400">IN</span></p>
+</div>
+</div>
+<div class="pt-6 border-t border-slate-100 grid grid-cols-3 text-[10px] text-slate-500 font-bold uppercase tracking-[0.1em]">
+<span>Height: 2.12ft</span>
+<span>Side: 0.84ft</span>
+<span>Ext: 6.4ft</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="fixed bottom-0 left-0 right-0 z-[100] flex flex-col pointer-events-none">
+<div class="max-w-[1440px] mx-auto w-full px-6 mb-6 pointer-events-auto">
+<div class="flex flex-row gap-4 w-full max-w-5xl mx-auto">
+<button class="flex-1 bg-white text-primary border-2 border-primary py-5 rounded-2xl font-black text-sm tracking-[0.2em] hover:bg-primary/5 transition-all shadow-lg shadow-primary/10 flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">analytics</span>
+                VIEW MODEL PERFORMANCE
+            </button>
+<button class="flex-1 bg-white text-black border-2 border-slate-200 py-5 rounded-2xl font-black text-sm tracking-[0.2em] hover:bg-slate-50 transition-all shadow-lg shadow-slate-200/20 flex items-center justify-center gap-3">
+                NEXT PREDICTION
+                <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<nav class="h-20 bg-white border-t border-slate-200 flex items-center justify-around px-4 pointer-events-auto shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-black transition-colors">home</span>
+<span class="text-[10px] font-bold text-slate-400 group-hover:text-black uppercase tracking-widest">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1" href="#">
+<span class="material-symbols-outlined text-primary active-icon">bar_chart</span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Contact</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-black transition-colors">show_chart</span>
+<span class="text-[10px] font-bold text-slate-400 group-hover:text-black uppercase tracking-widest">BIP</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-black transition-colors">description</span>
+<span class="text-[10px] font-bold text-slate-400 group-hover:text-black uppercase tracking-widest">Docs</span>
+</a>
+</nav>
+</footer>
+
+</body></html>

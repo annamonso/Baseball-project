@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#007AFF",
+                        "brand-teal": "#14B8A6",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#121e20",
+                        "predicted": "#007AFF",
+                        "actual": "#E64C65",
+                        "field-grass": "#6B9B3C",
+                        "field-grass-light": "#8DBB5A",
+                        "field-dirt": "#bc8a5f",
+                        "field-dirt-dark": "#a98467",
+                        "success-green": "#22C55E"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .baseball-field-bg {
+            background-color: #6B9B3C;
+            background-image: repeating-linear-gradient(
+                90deg,
+                #6B9B3C,
+                #6B9B3C 10%,
+                #8DBB5A 10%,
+                #8DBB5A 20%
+            );
+            position: relative;
+            overflow: hidden;
+        }
+        .player-dot {
+            @apply size-6 bg-black/70 border border-white/80 rounded-full flex items-center justify-center text-[8px] font-bold text-white shadow-md backdrop-blur-[2px] z-20;
+        }
+        .home-plate {
+            width: 10px;
+            height: 10px;
+            background: white;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        .base-square {
+            @apply size-2 bg-white rotate-45;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .nav-item {
+            @apply flex flex-col items-center justify-center gap-1 flex-1 py-2;
+        }
+        .nav-text {
+            @apply text-[10px] font-bold uppercase tracking-wider;
+        }
+    </style>
+<style>
+        body {
+            min-height: 100dvh;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#121617] dark:text-[#f6f8f8]">
+<nav class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-[#dce3e5] dark:border-gray-800">
+<div class="flex items-center px-4 py-3 justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#121617] dark:text-white cursor-pointer font-bold">chevron_left</span>
+<h1 class="text-lg font-bold tracking-tight">BIP Visualizer</h1>
+</div>
+<span class="bg-[#eaf9f0] text-[#22c55e] px-3 py-1.5 rounded-full text-[8px] font-black flex items-center gap-1 border border-[#22c55e]/30 shadow-sm uppercase">
+                Correct Result
+            </span>
+</div>
+<div class="px-4 pb-3 flex justify-between items-center bg-white dark:bg-background-dark">
+<div class="flex flex-col">
+<p class="text-[9px] font-black text-gray-500 uppercase leading-none mb-1">Pitcher</p>
+<p class="text-sm font-bold text-black dark:text-white">Gerrit Cole</p>
+</div>
+<div class="flex flex-col text-right">
+<p class="text-[9px] font-black text-gray-500 uppercase leading-none mb-1">Batter</p>
+<p class="text-sm font-bold text-black dark:text-white">Aaron Judge</p>
+</div>
+</div>
+</nav>
+<main class="flex flex-col min-h-screen pb-64">
+<section class="p-4 py-3 bg-white border-b border-[#dce3e5] dark:border-gray-800">
+<div class="flex justify-between items-center">
+<div class="flex gap-4 items-center">
+<div class="pr-4 border-r border-gray-200">
+<p class="text-[9px] font-black text-gray-500 uppercase">Count</p>
+<p class="text-lg font-black text-black">1 - 2</p>
+</div>
+<div>
+<p class="text-[9px] font-black text-gray-500 uppercase">Inning</p>
+<p class="text-lg font-black text-black leading-none">Top 4th</p>
+</div>
+</div>
+<div class="bg-gray-100 rounded-lg px-4 py-2 text-right">
+<p class="text-[9px] font-black text-gray-500 uppercase leading-tight">Actual Outcome</p>
+<p class="text-lg font-black text-brand-teal leading-tight">Single (1B)</p>
+</div>
+</div>
+</section>
+<section class="p-2 sm:p-4 flex flex-col items-center">
+<div class="relative w-full max-w-[520px] aspect-[4/5] baseball-field-bg rounded-3xl shadow-2xl overflow-hidden border-4 border-white dark:border-gray-800">
+<svg class="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice" viewBox="0 0 100 125">
+<path d="M 10,95 A 45,45 0 0 1 90,95 L 90,95 L 50,120 L 10,95 Z" fill="#bc8a5f"></path>
+<path d="M 50,120 L 76,94 L 50,68 L 24,94 Z" fill="#6B9B3C"></path>
+<circle cx="50" cy="94" fill="#bc8a5f" r="5"></circle>
+<circle cx="50" cy="94" fill="#a98467" r="4.5"></circle>
+<line stroke="white" stroke-width="0.5" x1="48.5" x2="51.5" y1="94" y2="94"></line>
+<line stroke="white" stroke-width="0.8" x1="50" x2="140" y1="120" y2="30"></line>
+<line stroke="white" stroke-width="0.8" x1="50" x2="-40" y1="120" y2="30"></line>
+<circle cx="50" cy="120" fill="#bc8a5f" r="9"></circle>
+</svg>
+<div class="absolute bottom-[4%] left-1/2 -translate-x-1/2 home-plate z-10"></div>
+<div class="absolute bottom-[20.8%] left-[76%] base-square z-10"></div>
+<div class="absolute bottom-[41.6%] left-1/2 -translate-x-1/2 base-square z-10"></div>
+<div class="absolute bottom-[20.8%] left-[24%] base-square z-10"></div>
+<div class="absolute bottom-[1%] left-1/2 -translate-x-1/2 player-dot">C</div>
+<div class="absolute bottom-[21%] left-1/2 -translate-x-1/2 player-dot">P</div>
+<div class="absolute bottom-[22%] left-[82%] player-dot -translate-x-1/2">1B</div>
+<div class="absolute bottom-[44%] left-[68%] player-dot -translate-x-1/2">2B</div>
+<div class="absolute bottom-[22%] left-[18%] player-dot -translate-x-1/2">3B</div>
+<div class="absolute bottom-[44%] left-[32%] player-dot -translate-x-1/2">SS</div>
+<div class="absolute top-[38%] left-[12%] player-dot">LF</div>
+<div class="absolute top-[15%] left-1/2 -translate-x-1/2 player-dot">CF</div>
+<div class="absolute top-[38%] left-[83%] player-dot">RF</div>
+<div class="absolute top-[32%] left-[38%] group z-30">
+<div class="size-6 bg-predicted rounded-full border-[3px] border-white shadow-[0_0_15px_rgba(0,122,255,0.8)] relative"></div>
+<div class="absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap bg-predicted text-white text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-tight">PRED</div>
+</div>
+<div class="absolute top-[20%] left-[58%] group z-30">
+<div class="size-6 bg-actual rounded-full border-[3px] border-white shadow-[0_0_15px_rgba(230,76,101,0.8)] relative"></div>
+<div class="absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap bg-actual text-white text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-tight">ACTUAL</div>
+</div>
+</div>
+<div class="mt-4 w-full px-4">
+<div class="bg-white border border-[#dce3e5] shadow-sm rounded-xl p-4 flex flex-col items-center justify-center">
+<p class="text-[9px] font-black text-gray-500 uppercase mb-1 tracking-widest">Model Prediction</p>
+<p class="text-xl font-black text-black">Predicted Result: <span class="text-primary">Single (1B)</span></p>
+</div>
+</div>
+<div class="mt-4 w-full flex justify-center gap-6 px-4">
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-predicted ring-2 ring-predicted/20"></span>
+<span class="text-[10px] font-black text-black dark:text-white uppercase tracking-wider">Predicted Landing</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-actual ring-2 ring-actual/20"></span>
+<span class="text-[10px] font-black text-black dark:text-white uppercase tracking-wider">Actual Landing</span>
+</div>
+</div>
+</section>
+<section class="px-4 pb-4 space-y-4">
+<div class="space-y-2">
+<h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Pre-Hit Data</h3>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-white p-4 rounded-2xl border border-[#dce3e5] shadow-sm">
+<p class="text-[9px] text-gray-400 uppercase font-black mb-1">Release Speed</p>
+<p class="text-xl font-black text-black">98.5<span class="text-[10px] font-medium ml-0.5 text-gray-400">mph</span></p>
+</div>
+<div class="bg-white p-4 rounded-2xl border border-[#dce3e5] shadow-sm">
+<p class="text-[9px] text-gray-400 uppercase font-black mb-1">Pitch Type</p>
+<p class="text-xl font-black text-black">4-Seam FB</p>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<h3 class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Post-Hit Metrics</h3>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-white p-3 rounded-xl border border-[#dce3e5] shadow-sm">
+<p class="text-[8px] text-gray-400 uppercase font-black mb-1">Launch Angle</p>
+<p class="text-lg font-black text-black">28.4<span class="text-[10px] font-medium ml-0.5 text-gray-400">°</span></p>
+</div>
+<div class="bg-white p-3 rounded-xl border border-[#dce3e5] shadow-sm">
+<p class="text-[8px] text-gray-400 uppercase font-black mb-1">Hit Distance</p>
+<p class="text-lg font-black text-black">395<span class="text-[10px] font-medium ml-0.5 text-gray-400">ft</span></p>
+</div>
+<div class="bg-white p-3 rounded-xl border border-[#dce3e5] shadow-sm">
+<p class="text-[8px] text-gray-400 uppercase font-black mb-1">Exit Velocity</p>
+<p class="text-lg font-black text-black">104.2<span class="text-[10px] font-medium ml-0.5 text-gray-400">mph</span></p>
+</div>
+</div>
+</div>
+<div class="bg-white p-4 rounded-2xl border border-[#dce3e5] shadow-sm">
+<div class="flex justify-between items-center">
+<div>
+<p class="text-[9px] text-gray-400 uppercase font-black">Model Confidence</p>
+<p class="text-xl font-black text-brand-teal">94.2%</p>
+</div>
+<div class="h-10 w-px bg-gray-100 mx-4"></div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<span class="text-[8px] font-black text-gray-400 uppercase">Reliability Index</span>
+<span class="text-[8px] font-black text-brand-teal">HIGH</span>
+</div>
+<div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-brand-teal h-full w-[94%]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-[#dce3e5] z-50">
+<div class="p-4 pb-2 flex flex-col gap-2">
+<div class="flex gap-2">
+<button class="flex-1 bg-white border border-[#dce3e5] text-[#121617] h-12 rounded-xl font-bold text-[10px] shadow-sm active:scale-[0.98] uppercase px-2 leading-tight">
+                    VIEW MODEL PERFORMANCE
+                </button>
+<button class="flex-[1.5] bg-brand-teal text-white h-12 rounded-xl font-bold text-xs shadow-lg shadow-brand-teal/20 active:scale-[0.98] uppercase">
+                    NEXT PREDICTION
+                </button>
+</div>
+</div>
+<div class="flex items-center h-16 px-4">
+<div class="nav-item text-[#658086]">
+<span class="material-symbols-outlined">home</span>
+<span class="nav-text">Home</span>
+</div>
+<div class="nav-item text-brand-teal">
+<span class="material-symbols-outlined">explore</span>
+<span class="nav-text">Visuals</span>
+</div>
+<div class="nav-item text-[#658086]">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="nav-text">Stats</span>
+</div>
+<div class="nav-item text-[#658086]">
+<span class="material-symbols-outlined">settings</span>
+<span class="nav-text">Settings</span>
+</div>
+</div>
+<div class="h-6 bg-transparent"></div>
+</div>
+
+</body></html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Model Performance Performance Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1f96ad",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#121e20",
+                        "accent-blue": "#2A9DF4",
+                        "accent-red": "#E64C65",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#121617] dark:text-white min-h-screen">
+<nav class="fixed top-0 left-0 right-0 z-[60] h-16 bg-white dark:bg-[#1a2b2e] border-b border-[#dce3e5] dark:border-white/10 px-8 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">analytics</span>
+</div>
+<span class="font-bold text-lg tracking-tight">StatsEngine</span>
+</div>
+<div class="flex items-center gap-8">
+<button class="flex items-center gap-2 text-[#658086] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">home</span>
+<span class="text-sm font-bold uppercase tracking-wider">Home</span>
+</button>
+<button class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-sm font-bold uppercase tracking-wider border-b-2 border-primary">Contact</span>
+</button>
+<button class="flex items-center gap-2 text-[#658086] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">show_chart</span>
+<span class="text-sm font-bold uppercase tracking-wider">BIP</span>
+</button>
+<button class="flex items-center gap-2 text-[#658086] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">description</span>
+<span class="text-sm font-bold uppercase tracking-wider">Docs</span>
+</button>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-[#658086] hover:bg-gray-100 rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="size-8 bg-gray-200 rounded-full overflow-hidden">
+<img alt="User" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6qHFw3jTkcRH9ev0pS6arD1riondcq0IXwO7bobAkuGKCu07OsgrwPOuNrL3JuOt4lF33R9bCBdTxAt_Utx_8THbhgiqh_ohXM4nNaJNi5cIRVjvP32vlgtmDcZJIPvDuf7XCrQenmVJpCEFquSSbiwT4RhF35hNg4ZDqSzKM_emLc9S166z_uCsh1coDe3xqPJWRtpGHKrIMo7xX_hKoiguseYH78d37h9NFk9rSYjyPxNfVxH4LqpsE9iviB4nv58olK1YuWQ"/>
+</div>
+</div>
+</nav>
+<div class="pt-16 pb-24 max-w-7xl mx-auto px-6">
+<header class="flex items-center justify-between py-8 bg-background-light dark:bg-background-dark">
+<div class="flex items-center gap-4">
+<button class="size-10 flex items-center justify-center rounded-lg bg-white border border-[#dce3e5] hover:bg-gray-50 transition-colors">
+<span class="material-symbols-outlined text-[#121617]">arrow_back</span>
+</button>
+<div>
+<h1 class="text-3xl font-bold tracking-tight text-[#121617]">Model Performance Metrics</h1>
+<p class="text-sm font-medium text-[#658086] uppercase tracking-[0.2em] mt-1">Analytics Dashboard</p>
+</div>
+</div>
+</header>
+<div class="mb-8 p-1.5 bg-white dark:bg-white/5 border border-[#dce3e5] dark:border-white/10 rounded-2xl flex shadow-sm">
+<button class="flex-1 py-3 text-center rounded-xl bg-primary text-white font-bold text-sm transition-all shadow-md">
+                Contact Model
+            </button>
+<button class="flex-1 py-3 text-center rounded-xl text-[#658086] font-bold text-sm hover:bg-gray-50 transition-all">
+                BIP Model
+            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white dark:bg-white/5 p-8 rounded-2xl border border-[#dce3e5] dark:border-white/10 shadow-sm">
+<p class="text-[#658086] text-sm font-bold uppercase tracking-widest mb-4">Accuracy</p>
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-bold text-[#121617]">60</span>
+<span class="text-2xl font-bold text-[#658086]">%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-white/5 p-8 rounded-2xl border border-[#dce3e5] dark:border-white/10 shadow-sm">
+<p class="text-[#658086] text-sm font-bold uppercase tracking-widest mb-4">ROC AUC</p>
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-bold text-[#121617]">0.63</span>
+</div>
+</div>
+<div class="bg-white dark:bg-white/5 p-8 rounded-2xl border border-[#dce3e5] dark:border-white/10 shadow-sm">
+<p class="text-[#658086] text-sm font-bold uppercase tracking-widest mb-4">F1-Score</p>
+<div class="flex items-baseline gap-1">
+<span class="text-5xl font-bold text-[#121617]">0.51</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+<div class="bg-white dark:bg-white/5 p-8 rounded-2xl border border-[#dce3e5] dark:border-white/10 shadow-sm flex flex-col items-center">
+<div class="w-full flex justify-between items-center mb-10">
+<h3 class="text-lg font-bold uppercase tracking-widest text-[#121617]">Performance Visualizations</h3>
+<span class="material-symbols-outlined text-[#658086]">info</span>
+</div>
+<div class="w-full max-w-md">
+<p class="text-center font-bold text-[#121617] mb-6">Confusion Matrix (2x2)</p>
+<div class="grid grid-cols-3 gap-4">
+<div></div>
+<div class="text-xs font-bold text-primary text-center uppercase py-2">Pred 0</div>
+<div class="text-xs font-bold text-primary text-center uppercase py-2">Pred 1</div>
+<div class="text-xs font-bold text-primary flex items-center uppercase">Actual 0</div>
+<div class="aspect-square bg-primary text-white flex flex-col items-center justify-center rounded-xl shadow-lg">
+<span class="text-2xl font-bold">9407</span>
+<span class="text-[10px] opacity-80 font-medium">True Neg</span>
+</div>
+<div class="aspect-square bg-primary/10 border-2 border-primary/20 text-[#121617] flex flex-col items-center justify-center rounded-xl">
+<span class="text-2xl font-bold">5922</span>
+<span class="text-[10px] text-[#658086] font-medium">False Pos</span>
+</div>
+<div class="text-xs font-bold text-primary flex items-center uppercase">Actual 1</div>
+<div class="aspect-square bg-primary/10 border-2 border-primary/20 text-[#121617] flex flex-col items-center justify-center rounded-xl">
+<span class="text-2xl font-bold">3688</span>
+<span class="text-[10px] text-[#658086] font-medium">False Neg</span>
+</div>
+<div class="aspect-square bg-primary text-white flex flex-col items-center justify-center rounded-xl shadow-lg">
+<span class="text-2xl font-bold">5006</span>
+<span class="text-[10px] opacity-80 font-medium">True Pos</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-white/5 p-8 rounded-2xl border border-[#dce3e5] dark:border-white/10 shadow-sm h-full">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-lg font-bold uppercase tracking-widest text-[#121617]">Model Metrics</h3>
+<button class="text-primary text-xs font-bold uppercase hover:underline">Download CSV</button>
+</div>
+<table class="w-full">
+<thead>
+<tr class="border-b border-[#dce3e5] dark:border-white/10">
+<th class="py-4 text-left text-xs font-bold text-[#658086] uppercase tracking-widest">Metric Type</th>
+<th class="py-4 text-right text-xs font-bold text-[#658086] uppercase tracking-widest">Value</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#dce3e5]/50 dark:divide-white/5">
+<tr class="group hover:bg-gray-50/50 transition-colors">
+<td class="py-6 text-base font-bold text-[#121617]">Precision</td>
+<td class="py-6 text-right text-base font-medium text-[#121617]">0.46</td>
+</tr>
+<tr class="group hover:bg-gray-50/50 transition-colors">
+<td class="py-6 text-base font-bold text-[#121617]">Recall</td>
+<td class="py-6 text-right text-base font-medium text-[#121617]">0.58</td>
+</tr>
+<tr class="group hover:bg-gray-50/50 transition-colors">
+<td class="py-6 text-base font-bold text-[#121617]">Log Loss</td>
+<td class="py-6 text-right text-base font-medium text-[#121617]">0.68</td>
+</tr>
+<tr class="group hover:bg-gray-50/50 transition-colors">
+<td class="py-6 text-base font-bold text-[#121617]">Matthews CC</td>
+<td class="py-6 text-right text-base font-medium text-[#121617]">0.12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 left-0 right-0 h-20 bg-white border-t border-[#dce3e5] z-50 flex justify-around items-center px-4">
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-[#658086] group-hover:text-primary transition-colors">home</span>
+<span class="text-[10px] font-bold text-[#658086] group-hover:text-primary uppercase tracking-tighter">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-primary">bar_chart</span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-tighter">Contact</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-[#658086] group-hover:text-primary transition-colors">multiline_chart</span>
+<span class="text-[10px] font-bold text-[#658086] group-hover:text-primary uppercase tracking-tighter">BIP</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<span class="material-symbols-outlined text-[#658086] group-hover:text-primary transition-colors">description</span>
+<span class="text-[10px] font-bold text-[#658086] group-hover:text-primary uppercase tracking-tighter">Docs</span>
+</button>
+</div>
+
+</body></html>
