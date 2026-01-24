@@ -60,10 +60,10 @@ Download and store MLB Statcast data from Baseball Savant using the pybaseball l
 - Identify Statcast coverage gaps (2015-2016 have more missing data per @SOURCES.md)
 
 ### Success Criteria
-- ✓ Successfully download 2023-2024 seasons
-- ✓ <10% missing values in critical fields
-- ✓ Validation script confirms data integrity
-- ✓ All files properly organized in data/raw/ directory
+-  Successfully download 2023-2024 seasons
+-  <10% missing values in critical fields
+-  Validation script confirms data integrity
+-  All files properly organized in data/raw/ directory
 
 ---
 
@@ -191,11 +191,11 @@ Update @data_dictionary.md with:
 - Missing value strategy
 
 ### Success Criteria
-- ✓ All features engineered per @research.md specifications
-- ✓ Missing values handled appropriately (<5% in critical features)
-- ✓ Class imbalance addressed for outcome model
-- ✓ Train/val/test splits created with temporal separation
-- ✓ Complete feature documentation in @data_dictionary.md
+-  All features engineered per @research.md specifications
+-  Missing values handled appropriately (<5% in critical features)
+-  Class imbalance addressed for outcome model
+-  Train/val/test splits created with temporal separation
+-  Complete feature documentation in @data_dictionary.md
 
 ---
 
