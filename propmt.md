@@ -1,4 +1,4 @@
-# Baseball Prediction Models - Development Prompt
+# Baseball Prediction Models - Prompt
 
 ## General Objective
 
@@ -513,7 +513,7 @@ Use only if MCP cannot fetch HTML, or if you need static assets, or want to diff
 Rule: if MCP can fetch the screen HTML successfully, the downloaded folder is not required for design extraction.
 
 ---
-
+@ 
 ### Tasks
 
 #### 5.1 Generate design system from Stitch
@@ -649,5 +649,197 @@ Success Criteria:
 
 ---
 
-## Phase 6 - Full-Stack Web Application
 
+# Phase 6: Full-Stack Local Deployment (React + FastAPI)
+
+---
+
+## Objective
+
+Stand up the entire application locally (frontend + backend) so I can open a local URL, enter pitch or batted-ball inputs, and get real-time predictions plus interactive visualizations. Use React for the web app, and follow the Stitch design system already defined in `DESIGN.md`. Use the Stitch Skills repo, specifically the `react-components` skill, to generate consistent UI components aligned with Stitch.
+
+---
+
+## Scope
+
+Deliver a working local development setup with:
+
+- A **React + TypeScript** frontend with two pages: Contact Prediction and Hit Outcome
+- A **Python backend API** that loads trained models and returns predictions
+- **End-to-end wiring** between UI forms, charts, and API responses
+- **Local run instructions** and a single "start everything locally" workflow (without providing literal commands)
+
+---
+
+## Required Inputs and Existing Assets
+
+Assume the repo already contains (or will contain) these from earlier phases:
+
+- `DESIGN.md` (design tokens and component patterns)
+- `data_dictionary.md` (feature definitions and valid ranges)
+- **Trained model artifacts and metadata:**
+  - `models/contact_prediction/lightgbm_model.pkl`
+  - `models/hit_outcome/xgboost_model.pkl`
+  - Metadata JSON files listing exact feature order and training versions
+- **Feature engineering modules:**
+  - `src/features/contact_features.py`
+  - `src/features/outcome_features.py`
+- **API contracts already agreed:**
+  - `POST /api/predict/contact`
+  - `POST /api/predict/outcome`
+
+If any of these are missing, create placeholders and document clearly what needs to be added later, but keep the local app runnable with mocked outputs.
+
+---
+
+## Architecture Requirements
+
+### Frontend
+
+- **React + TypeScript**
+- Form handling with **React Hook Form** and validation with **Zod**
+- Charting with **Recharts**
+- Styling with **Tailwind**, using tokens derived from `DESIGN.md`
+- **Two routes/pages:**
+  - `/contact` for Contact Prediction
+  - `/outcome` for Hit Outcome
+- Shared layout and navigation (simple top nav is fine)
+- **Robust client-side validation** using ranges from `data_dictionary.md`
+- **Friendly error states:**
+  - invalid inputs
+  - backend unavailable
+  - backend 400 validation errors
+  - backend 500 errors
+- **Performance target:** UI interactions should feel instant, and API calls should be fast on localhost
+
+### Backend
+
+- **Python inference server** (FastAPI recommended)
+- Loads model files on startup
+- Validates request payloads with strict schemas
+- Reconstructs feature vectors in the exact order expected by the models (use metadata JSON)
+- Returns predictions exactly matching the contract
+- Includes optional "explainability" fields if available:
+  - contact endpoint: `top_features` contributions if you can compute them, otherwise omit
+- Includes a basic health endpoint for local debugging
+
+### Local Networking
+
+- Frontend should call backend locally via a single base URL
+- Use a development proxy or CORS configuration so requests work seamlessly in local dev
+- Provide clear environment variable names for API base URL
+
+---
+
+## Use Stitch Skills (react-components)
+
+Use the Stitch Skills repository, specifically `react-components`, to generate:
+
+- Buttons, inputs, selects, toggles
+- Cards and sections
+- Page layout primitives
+- Error banners and helper text
+- Chart container styling wrappers
+
+### Rules:
+
+- The Stitch-generated components must match `DESIGN.md` tokens (colors, spacing, typography, radii, shadows).
+- Prefer composing the app from Stitch components rather than custom styling.
+- Keep component APIs consistent across forms (same prop naming, same validation display patterns).
+- Do not embed business logic inside UI primitives, keep logic in page components or hooks.
+
+### Deliverable expectation:
+
+A small, reusable component library folder in the frontend, generated or scaffolded via Stitch skills, then used across both pages.
+
+---
+
+## Implementation Tasks
+
+### 6.1 Repo Structure and Local App Layout
+
+Create or finalize a clean monorepo-like layout:
+
+- `backend/` for the API server
+- `web/` for the React app
+- shared docs and model artifacts in top-level folders
+
+Add documentation that explains:
+
+- what runs where
+- where models are stored
+- where feature order is defined
+- how to change the API base URL
+
+### 6.2 Backend API Implementation
+
+Implement:
+
+- **`POST /api/predict/contact`**
+  - Inputs: pre-impact features from the spec
+  - Output: `prob_contact`, `threshold`, `predicted`, and optional `top_features`
+- **`POST /api/predict/outcome`**
+  - Inputs: post-contact features from the spec
+  - Output: `probs` dict, `predicted`, and optional `xwoba`
+
+**Key requirements:**
+
+- Validate feature ranges when possible (use `data_dictionary.md`)
+- Handle missing optional fields gracefully
+- Ensure probability outputs sum to 1 for outcome endpoint
+- Provide deterministic behavior for the same input
+- Log a compact request id and timing per request for local debugging
+
+### 6.3 Frontend Pages and Interactions
+
+Implement two pages with the UI and visuals described in Phase 5:
+
+#### Contact page
+
+- Form inputs for pitch, location, movement, count, handedness
+- Strike zone plot overlay of `plate_x`, `plate_z`
+- Probability bar or gauge
+- Optional top feature contributions chart
+- Threshold toggle that affects predicted label
+
+#### Outcome page
+
+- Form inputs for `launch_speed`, `launch_angle`, `spray_angle`, plus optional context fields
+- EV vs LA visualization, single point overlay
+- Outcome probabilities bar chart
+- Predicted outcome display, optional xwOBA display
+
+### 6.4 API Client Layer
+
+Add a typed API layer in the frontend:
+
+- A fetch wrapper with:
+  - timeouts
+  - JSON parsing safeguards
+  - consistent error normalization
+- Typed request/response models matching backend schemas
+- A single place to configure API base URL
+
+### 6.5 Local Run Experience
+
+Provide a short `LOCAL_DEV.md` that explains how to:
+
+- start the backend locally
+- start the frontend locally
+- verify the system (health endpoint and a sample prediction through the UI)
+- troubleshoot common issues (ports in use, missing models, CORS/proxy issues)
+
+Avoid listing literal shell commands, describe the steps and expected outcomes instead.
+
+### 6.6 Quality Gates
+
+Before declaring done, ensure:
+
+- Both pages render and are navigable
+- Submitting each form calls the correct endpoint and updates charts
+- Validation blocks invalid ranges
+- Backend returns correct JSON shapes
+- Errors render clearly and do not break the app
+- Linting and type-checking pass (where applicable)
+
+---
