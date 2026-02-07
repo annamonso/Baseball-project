@@ -33,6 +33,8 @@ Download and store MLB Statcast data from Baseball Savant using the pybaseball l
 
 #### 1.2 Data Download Strategy
 
+For data extraction follow @sources.md 
+
 **For Contact Prediction Model:**
 - Download full pitch-by-pitch data from Statcast (2023-2024 seasons)
 - Use monthly downloads to avoid timeouts (reference @SOURCES.md)
@@ -503,6 +505,7 @@ Build an interactive visualization layer for model inputs and predictions, align
 ### Strategy, Stitch first, local UI folder second
 
 You have two valid sources of truth for UI:
+Project ID in stitch: 9081103112165199837  
 
 1) Stitch MCP (preferred)  
 Use Stitch as the canonical design source. Extract theme, tokens, and screen HTML directly via MCP. This avoids manual syncing.

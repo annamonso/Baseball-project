@@ -1,0 +1,177 @@
+{
+  "model_name": "Hit Outcome Prediction (XGBoost)",
+  "evaluation_date": "2026-02-06T19:22:38.947218",
+  "test_samples": 21486,
+  "metrics": {
+    "accuracy": 0.8539979521548916,
+    "f1_macro": 0.64265272131545,
+    "f1_weighted": 0.8712564675447079
+  },
+  "per_class_metrics": {
+    "out": {
+      "support": 14628,
+      "precision": 0.9455350132057962,
+      "recall": 0.9055236532677058,
+      "f1": 0.9250969026085135
+    },
+    "single": {
+      "support": 4579,
+      "precision": 0.8553536345776032,
+      "recall": 0.7606464293513867,
+      "f1": 0.8052248294994798
+    },
+    "double": {
+      "support": 1257,
+      "precision": 0.5168986083499006,
+      "recall": 0.6205250596658711,
+      "f1": 0.5639913232104121
+    },
+    "triple": {
+      "support": 104,
+      "precision": 0.035637149028077755,
+      "recall": 0.3173076923076923,
+      "f1": 0.06407766990291262
+    },
+    "home_run": {
+      "support": 918,
+      "precision": 0.831958762886598,
+      "recall": 0.8790849673202614,
+      "f1": 0.8548728813559322
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "out",
+      "single",
+      "double",
+      "triple",
+      "home_run"
+    ],
+    "matrix": [
+      [
+        13246,
+        478,
+        343,
+        457,
+        104
+      ],
+      [
+        658,
+        3483,
+        297,
+        137,
+        4
+      ],
+      [
+        76,
+        107,
+        780,
+        247,
+        47
+      ],
+      [
+        15,
+        4,
+        44,
+        33,
+        8
+      ],
+      [
+        14,
+        0,
+        45,
+        52,
+        807
+      ]
+    ]
+  },
+  "feature_importance": [
+    {
+      "feature": "is_fly_ball",
+      "importance": 0.1341519057750702,
+      "importance_pct": 13.415190696716309
+    },
+    {
+      "feature": "sweet_spot",
+      "importance": 0.10304412245750427,
+      "importance_pct": 10.304411888122559
+    },
+    {
+      "feature": "is_ground_ball",
+      "importance": 0.09769035875797272,
+      "importance_pct": 9.769036293029785
+    },
+    {
+      "feature": "is_line_drive",
+      "importance": 0.08179721236228943,
+      "importance_pct": 8.179720878601074
+    },
+    {
+      "feature": "distance_from_foul_line",
+      "importance": 0.08159470558166504,
+      "importance_pct": 8.159470558166504
+    },
+    {
+      "feature": "hard_hit",
+      "importance": 0.0697636678814888,
+      "importance_pct": 6.976366996765137
+    },
+    {
+      "feature": "is_popup",
+      "importance": 0.06917260587215424,
+      "importance_pct": 6.917260646820068
+    },
+    {
+      "feature": "depth_of_hit",
+      "importance": 0.0592765137553215,
+      "importance_pct": 5.927651405334473
+    },
+    {
+      "feature": "spray_angle",
+      "importance": 0.04975798726081848,
+      "importance_pct": 4.975798606872559
+    },
+    {
+      "feature": "launch_angle_squared",
+      "importance": 0.04527495428919792,
+      "importance_pct": 4.527495384216309
+    },
+    {
+      "feature": "batter_right",
+      "importance": 0.04314510524272919,
+      "importance_pct": 4.314510345458984
+    },
+    {
+      "feature": "barrel_indicator",
+      "importance": 0.040458615869283676,
+      "importance_pct": 4.045861721038818
+    },
+    {
+      "feature": "launch_angle",
+      "importance": 0.0395372211933136,
+      "importance_pct": 3.9537220001220703
+    },
+    {
+      "feature": "batter_left",
+      "importance": 0.03687866032123566,
+      "importance_pct": 3.687865972518921
+    },
+    {
+      "feature": "launch_speed",
+      "importance": 0.024776870384812355,
+      "importance_pct": 2.477687120437622
+    },
+    {
+      "feature": "exit_velocity_centered",
+      "importance": 0.02367956005036831,
+      "importance_pct": 2.3679559230804443
+    }
+  ],
+  "class_distribution": {
+    "out": 14628,
+    "single": 4579,
+    "double": 1257,
+    "triple": 104,
+    "home_run": 918
+  }
+}

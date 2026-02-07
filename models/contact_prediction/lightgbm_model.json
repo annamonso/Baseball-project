@@ -1,0 +1,36 @@
+{
+  "training_date": "2026-01-27T20:02:02.643388",
+  "n_samples": 1125432,
+  "n_features": 16,
+  "feature_names": [
+    "plate_x",
+    "plate_z",
+    "distance_from_center",
+    "in_zone",
+    "pfx_x",
+    "pfx_z",
+    "total_movement",
+    "release_speed",
+    "effective_velocity",
+    "balls",
+    "strikes",
+    "count_advantage",
+    "two_strikes",
+    "hitters_count",
+    "same_side",
+    "platoon_advantage"
+  ],
+  "params": {
+    "objective": "binary",
+    "metric": "binary_logloss",
+    "boosting_type": "gbdt",
+    "num_leaves": 31,
+    "learning_rate": 0.05,
+    "feature_fraction": 0.9,
+    "max_depth": 12,
+    "verbose": -1,
+    "n_jobs": -1,
+    "random_state": 42
+  },
+  "n_estimators": 499
+}

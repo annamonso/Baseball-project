@@ -1,0 +1,16 @@
+plate_x
+plate_z
+distance_from_center
+in_zone
+pfx_x
+pfx_z
+total_movement
+release_speed
+effective_velocity
+balls
+strikes
+count_advantage
+two_strikes
+hitters_count
+same_side
+platoon_advantage

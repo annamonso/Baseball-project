@@ -1,0 +1,43 @@
+{
+  "training_date": "2026-01-27T20:08:03.817570",
+  "n_samples": 195055,
+  "n_samples_resampled": 658285,
+  "n_features": 16,
+  "feature_names": [
+    "launch_speed",
+    "launch_angle",
+    "exit_velocity_centered",
+    "launch_angle_squared",
+    "barrel_indicator",
+    "sweet_spot",
+    "hard_hit",
+    "spray_angle",
+    "distance_from_foul_line",
+    "depth_of_hit",
+    "is_ground_ball",
+    "is_fly_ball",
+    "is_line_drive",
+    "is_popup",
+    "batter_left",
+    "batter_right"
+  ],
+  "params": {
+    "objective": "multi:softprob",
+    "num_class": 5,
+    "max_depth": 12,
+    "learning_rate": 0.01,
+    "n_estimators": 1000,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "random_state": 42,
+    "eval_metric": "mlogloss"
+  },
+  "label_order": [
+    "out",
+    "single",
+    "double",
+    "triple",
+    "home_run"
+  ],
+  "applied_smote": true
+}

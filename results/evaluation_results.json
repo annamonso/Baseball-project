@@ -1,0 +1,293 @@
+{
+  "evaluation_date": "2026-02-06T19:22:38.950289",
+  "project": "Baseball ML Analytics",
+  "models": {
+    "contact_prediction": {
+      "model_name": "Contact Prediction (LightGBM)",
+      "evaluation_date": "2026-02-06T19:22:38.944122",
+      "test_samples": 125679,
+      "metrics": {
+        "accuracy": 0.8300511620875405,
+        "precision": 0.5323974082073434,
+        "recall": 0.06866614048934491,
+        "f1_score": 0.12164329481432742,
+        "roc_auc": 0.8047813142341885
+      },
+      "confusion_matrix": {
+        "labels": [
+          "No Contact",
+          "Contact"
+        ],
+        "matrix": [
+          [
+            102841,
+            1299
+          ],
+          [
+            20060,
+            1479
+          ]
+        ]
+      },
+      "feature_importance": [
+        {
+          "feature": "plate_x",
+          "importance": 1898,
+          "importance_pct": 12.678690714762858
+        },
+        {
+          "feature": "pfx_x",
+          "importance": 1878,
+          "importance_pct": 12.545090180360722
+        },
+        {
+          "feature": "plate_z",
+          "importance": 1806,
+          "importance_pct": 12.064128256513026
+        },
+        {
+          "feature": "pfx_z",
+          "importance": 1765,
+          "importance_pct": 11.790247160988644
+        },
+        {
+          "feature": "distance_from_center",
+          "importance": 1641,
+          "importance_pct": 10.961923847695392
+        },
+        {
+          "feature": "release_speed",
+          "importance": 1526,
+          "importance_pct": 10.1937207748831
+        },
+        {
+          "feature": "total_movement",
+          "importance": 1370,
+          "importance_pct": 9.151636606546425
+        },
+        {
+          "feature": "effective_velocity",
+          "importance": 950,
+          "importance_pct": 6.346025384101536
+        },
+        {
+          "feature": "strikes",
+          "importance": 611,
+          "importance_pct": 4.081496325985304
+        },
+        {
+          "feature": "same_side",
+          "importance": 523,
+          "importance_pct": 3.4936539746158983
+        },
+        {
+          "feature": "balls",
+          "importance": 404,
+          "importance_pct": 2.6987307949231796
+        },
+        {
+          "feature": "count_advantage",
+          "importance": 337,
+          "importance_pct": 2.2511690046760187
+        },
+        {
+          "feature": "platoon_advantage",
+          "importance": 144,
+          "importance_pct": 0.9619238476953907
+        },
+        {
+          "feature": "in_zone",
+          "importance": 43,
+          "importance_pct": 0.28724114896459585
+        },
+        {
+          "feature": "two_strikes",
+          "importance": 39,
+          "importance_pct": 0.2605210420841683
+        },
+        {
+          "feature": "hitters_count",
+          "importance": 35,
+          "importance_pct": 0.23380093520374082
+        }
+      ]
+    },
+    "hit_outcome": {
+      "model_name": "Hit Outcome Prediction (XGBoost)",
+      "evaluation_date": "2026-02-06T19:22:38.947218",
+      "test_samples": 21486,
+      "metrics": {
+        "accuracy": 0.8539979521548916,
+        "f1_macro": 0.64265272131545,
+        "f1_weighted": 0.8712564675447079
+      },
+      "per_class_metrics": {
+        "out": {
+          "support": 14628,
+          "precision": 0.9455350132057962,
+          "recall": 0.9055236532677058,
+          "f1": 0.9250969026085135
+        },
+        "single": {
+          "support": 4579,
+          "precision": 0.8553536345776032,
+          "recall": 0.7606464293513867,
+          "f1": 0.8052248294994798
+        },
+        "double": {
+          "support": 1257,
+          "precision": 0.5168986083499006,
+          "recall": 0.6205250596658711,
+          "f1": 0.5639913232104121
+        },
+        "triple": {
+          "support": 104,
+          "precision": 0.035637149028077755,
+          "recall": 0.3173076923076923,
+          "f1": 0.06407766990291262
+        },
+        "home_run": {
+          "support": 918,
+          "precision": 0.831958762886598,
+          "recall": 0.8790849673202614,
+          "f1": 0.8548728813559322
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "out",
+          "single",
+          "double",
+          "triple",
+          "home_run"
+        ],
+        "matrix": [
+          [
+            13246,
+            478,
+            343,
+            457,
+            104
+          ],
+          [
+            658,
+            3483,
+            297,
+            137,
+            4
+          ],
+          [
+            76,
+            107,
+            780,
+            247,
+            47
+          ],
+          [
+            15,
+            4,
+            44,
+            33,
+            8
+          ],
+          [
+            14,
+            0,
+            45,
+            52,
+            807
+          ]
+        ]
+      },
+      "feature_importance": [
+        {
+          "feature": "is_fly_ball",
+          "importance": 0.1341519057750702,
+          "importance_pct": 13.415190696716309
+        },
+        {
+          "feature": "sweet_spot",
+          "importance": 0.10304412245750427,
+          "importance_pct": 10.304411888122559
+        },
+        {
+          "feature": "is_ground_ball",
+          "importance": 0.09769035875797272,
+          "importance_pct": 9.769036293029785
+        },
+        {
+          "feature": "is_line_drive",
+          "importance": 0.08179721236228943,
+          "importance_pct": 8.179720878601074
+        },
+        {
+          "feature": "distance_from_foul_line",
+          "importance": 0.08159470558166504,
+          "importance_pct": 8.159470558166504
+        },
+        {
+          "feature": "hard_hit",
+          "importance": 0.0697636678814888,
+          "importance_pct": 6.976366996765137
+        },
+        {
+          "feature": "is_popup",
+          "importance": 0.06917260587215424,
+          "importance_pct": 6.917260646820068
+        },
+        {
+          "feature": "depth_of_hit",
+          "importance": 0.0592765137553215,
+          "importance_pct": 5.927651405334473
+        },
+        {
+          "feature": "spray_angle",
+          "importance": 0.04975798726081848,
+          "importance_pct": 4.975798606872559
+        },
+        {
+          "feature": "launch_angle_squared",
+          "importance": 0.04527495428919792,
+          "importance_pct": 4.527495384216309
+        },
+        {
+          "feature": "batter_right",
+          "importance": 0.04314510524272919,
+          "importance_pct": 4.314510345458984
+        },
+        {
+          "feature": "barrel_indicator",
+          "importance": 0.040458615869283676,
+          "importance_pct": 4.045861721038818
+        },
+        {
+          "feature": "launch_angle",
+          "importance": 0.0395372211933136,
+          "importance_pct": 3.9537220001220703
+        },
+        {
+          "feature": "batter_left",
+          "importance": 0.03687866032123566,
+          "importance_pct": 3.687865972518921
+        },
+        {
+          "feature": "launch_speed",
+          "importance": 0.024776870384812355,
+          "importance_pct": 2.477687120437622
+        },
+        {
+          "feature": "exit_velocity_centered",
+          "importance": 0.02367956005036831,
+          "importance_pct": 2.3679559230804443
+        }
+      ],
+      "class_distribution": {
+        "out": 14628,
+        "single": 4579,
+        "double": 1257,
+        "triple": 104,
+        "home_run": 918
+      }
+    }
+  }
+}

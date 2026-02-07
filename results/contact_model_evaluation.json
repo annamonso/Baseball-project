@@ -1,0 +1,110 @@
+{
+  "model_name": "Contact Prediction (LightGBM)",
+  "evaluation_date": "2026-02-06T19:22:38.944122",
+  "test_samples": 125679,
+  "metrics": {
+    "accuracy": 0.8300511620875405,
+    "precision": 0.5323974082073434,
+    "recall": 0.06866614048934491,
+    "f1_score": 0.12164329481432742,
+    "roc_auc": 0.8047813142341885
+  },
+  "confusion_matrix": {
+    "labels": [
+      "No Contact",
+      "Contact"
+    ],
+    "matrix": [
+      [
+        102841,
+        1299
+      ],
+      [
+        20060,
+        1479
+      ]
+    ]
+  },
+  "feature_importance": [
+    {
+      "feature": "plate_x",
+      "importance": 1898,
+      "importance_pct": 12.678690714762858
+    },
+    {
+      "feature": "pfx_x",
+      "importance": 1878,
+      "importance_pct": 12.545090180360722
+    },
+    {
+      "feature": "plate_z",
+      "importance": 1806,
+      "importance_pct": 12.064128256513026
+    },
+    {
+      "feature": "pfx_z",
+      "importance": 1765,
+      "importance_pct": 11.790247160988644
+    },
+    {
+      "feature": "distance_from_center",
+      "importance": 1641,
+      "importance_pct": 10.961923847695392
+    },
+    {
+      "feature": "release_speed",
+      "importance": 1526,
+      "importance_pct": 10.1937207748831
+    },
+    {
+      "feature": "total_movement",
+      "importance": 1370,
+      "importance_pct": 9.151636606546425
+    },
+    {
+      "feature": "effective_velocity",
+      "importance": 950,
+      "importance_pct": 6.346025384101536
+    },
+    {
+      "feature": "strikes",
+      "importance": 611,
+      "importance_pct": 4.081496325985304
+    },
+    {
+      "feature": "same_side",
+      "importance": 523,
+      "importance_pct": 3.4936539746158983
+    },
+    {
+      "feature": "balls",
+      "importance": 404,
+      "importance_pct": 2.6987307949231796
+    },
+    {
+      "feature": "count_advantage",
+      "importance": 337,
+      "importance_pct": 2.2511690046760187
+    },
+    {
+      "feature": "platoon_advantage",
+      "importance": 144,
+      "importance_pct": 0.9619238476953907
+    },
+    {
+      "feature": "in_zone",
+      "importance": 43,
+      "importance_pct": 0.28724114896459585
+    },
+    {
+      "feature": "two_strikes",
+      "importance": 39,
+      "importance_pct": 0.2605210420841683
+    },
+    {
+      "feature": "hitters_count",
+      "importance": 35,
+      "importance_pct": 0.23380093520374082
+    }
+  ]
+}
