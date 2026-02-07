@@ -1,0 +1,16 @@
+launch_speed
+launch_angle
+exit_velocity_centered
+launch_angle_squared
+barrel_indicator
+sweet_spot
+hard_hit
+spray_angle
+distance_from_foul_line
+depth_of_hit
+is_ground_ball
+is_fly_ball
+is_line_drive
+is_popup
+batter_left
+batter_right
